@@ -16,14 +16,14 @@
 
 <input type="text" id="sample5_address" placeholder="주소">
 <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+<div id="map" style="width: 100vw;height: 100vh;display:none"></div>
 
 
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-            level: 5 // 지도의 확대 레벨
+            level: 3 // 지도의 확대 레벨
         };
 
     //지도를 미리 생성
