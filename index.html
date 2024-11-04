@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>지도 생성하기</title>
-    
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=661084cb5fce7ebb453fa224ac8ffbe6"></script>
 </head>
 <body>
 <!-- 지도를 표시할 div 입니다 -->
@@ -11,20 +11,14 @@
 <div id="map" style="width:100%;height:350px;"></div>
 
 <script>
-const script = document.createElement("script");
-script.src = "http://dapi.kakao.com/v2/maps/sdk.js?appkey=661084cb5fce7ebb453fa224ac8ffbe6&autoload=false&libraries=clusterer,services&";
-document.head.appendChild(script);
-script.onload = () => {
-    kakao.maps.load(() => {
-        const node = document.getElementById('map'); // 지도를 표시할 div
-        const center = new kakao.maps.LatLng(37.50802, 127.062835);
-        const options = {
-            center,
-            level: 3
-        };
-        const map = new kakao.maps.Map(node, options);
-    });
-};
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption); 
 </script>
 </body>
 </html>
