@@ -5,25 +5,21 @@
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=661084cb5fce7ebb453fa224ac8ffbe6&libraries=services"></script>
 
     <style>
-        <div class="wrapper">
-          <div id="input-box">
-            <!-- 입력 필드들 -->
-            <!-- 추가 입력 필드 -->
-          </div>
-        </div>
-        
         body {
             font-family: Arial, sans-serif;
             background-color: #f3f4f6;
         }
-      .wrapper {
+
+        .wrapper {
             margin: 0;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             height: 100vh;
             padding-right: 20px;
+            position: relative; /* z-index가 작동하려면 부모에 position 속성이 필요 */
         }
+
         #input-box {
             width: 280px; /* 네모난 상자의 너비 */
             height: 450px; /* 네모난 상자의 높이 */
@@ -37,7 +33,10 @@
             align-items: center;
             gap: 20px; /* 입력 필드 간 간격 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+            position: relative; /* position 속성 추가 */
+            z-index: 10; /* z-index 설정 */
         }
+
         input {
             width: 100%; /* 입력 필드를 상자의 너비에 맞춤 */
             padding: 10px;
@@ -51,6 +50,16 @@
   </head>
   
   <body>
+
+  <div class="wrapper">
+        <div id="input-box">
+            <!-- 입력 필드들 -->
+            <input type="text" placeholder="입력 필드 1" />
+            <input type="text" placeholder="입력 필드 2" />
+            <!-- 추가 입력 필드 -->
+        </div>
+    </div>
+    
     <input type="text" id="sample5_address" placeholder="주소">
     <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
     <div id="map" style="width: 100vw;height: 100vh;display:none"></div>
