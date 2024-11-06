@@ -21,7 +21,7 @@
         }
 
         #input-box {
-            width: 35vw;  /* 화면 전체 너비의 35% */
+            width: 250vw;  /* 네모난 상자의의 너비 */
             height: 450px; /* 네모난 상자의 높이 */
             border: 2px solid #ffffff;
             border-radius: 8px;
@@ -50,8 +50,8 @@
             position: absolute; /* 절대 위치로 설정 */
             top: 0;  /* 위쪽에 정렬 */
             left: 0; /* 왼쪽에 정렬 */
-            height: 100vh; /* 화면 전체 높이 */
-            width: 65vw;  /* 화면 전체 너비의 65% */
+            <!--height: 100vh; /* 화면 전체 높이 */
+            width: 65vw;  /* 화면 전체 너비의 65% */-->
         }
     </style>
   </head>
@@ -69,7 +69,7 @@
     
     <input type="text" id="sample5_address" placeholder="주소">
     <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-    <div id="map" style="width: 100vw;height: 100vh;display:none"></div>
+    <div id="map" style="width: 65vw;height: 100vh;display:none"></div>
     
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
