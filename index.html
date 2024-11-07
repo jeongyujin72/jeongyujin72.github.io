@@ -8,50 +8,52 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
         }
 
         .wrapper {
-            margin: 0;
             display: flex;
             justify-content: flex-end;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
             padding-right: 20px;
-            position: relative; /* z-index가 작동하려면 부모에 position 속성이 필요 */
+            position: relative; 
         }
 
         #input-box {
-            width: 30vw;  /* 네모난 상자의 너비 */
-            height: 450px; /* 네모난 상자의 높이 */
+            width: 30vw;  
+            height: 450px; 
             border: 2px solid #ffffff;
             border-radius: 8px;
             padding: 30px;
             background-color: #ffffff;
-            overflow-y: auto; /* 입력 필드가 많아지면 스크롤바 추가 */
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px; /* 입력 필드 간 간격 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
-            position: relative; /* position 속성 추가 */
-            z-index: 10; /* z-index 설정 */
+            gap: 20px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            position: relative; 
+            z-index: 10;
         }
 
         input {
-            width: 100%; /* 입력 필드를 상자의 너비에 맞춤 */
+            width: 100%; 
             padding: 10px;
-            border: none; /* 기본 테두리 제거 */
-            border-bottom: 1px solid #7a7a7a; /* 밑줄 추가 */
-            outline: none; /* 클릭 시 파란 테두리 제거 */
+            border: none; 
+            border-bottom: 1px solid #7a7a7a; 
+            outline: none; 
             box-sizing: border-box;
-            cursor: pointer; /* 클릭 시 포인터 커서 */
+            cursor: pointer; 
         }
-      #map {
-            position: absolute; /* 절대 위치로 설정 */
-            top: 0;  /* 위쪽에 정렬 */
-            left: 0; /* 왼쪽에 정렬 */
-            <!--height: 100vh; /* 화면 전체 높이 */
-            width: 65vw;  /* 화면 전체 너비의 65% */-->
+
+        #map {
+            position: absolute;
+            top: 0;  
+            left: 0;
+            width: 65vw;  
+            height: 100vh;
         }
     </style>
   </head>
@@ -62,8 +64,8 @@
     <div id="input-box">
         <!-- 입력 필드들 -->
         <input type="text" id="sample5_address" placeholder="주소">
+        <div id="address-list"></div> <!-- 새로 추가되는 주소 입력 칸을 표시할 곳 -->
         <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-        <!-- 추가 입력 필드 -->
     </div>
   </div>
 
@@ -119,6 +121,14 @@
 
                             // 마커를 배열에 저장
                             markers.push(newMarker);
+
+                            // 새로운 주소 텍스트 필드를 생성
+                            var addressList = document.getElementById("address-list");
+                            var newInput = document.createElement("input");
+                            newInput.type = "text";
+                            newInput.value = addr; // 새 입력 칸에 주소 추가
+                            newInput.disabled = true; // 수정 불가능하도록 설정
+                            addressList.appendChild(newInput);
                         } else {
                             alert("최대 10개의 마커만 표시할 수 있습니다.");
                         }
