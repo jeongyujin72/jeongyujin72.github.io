@@ -86,6 +86,9 @@
     // 마커를 저장할 배열
     var markers = [];
 
+    // 좌표를 저장할 배열
+    var coordinates = [];
+
     function sample5_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
