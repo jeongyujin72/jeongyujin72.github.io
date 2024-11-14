@@ -112,7 +112,7 @@
                         map.setCenter(coords);
 
                         // 좌표를 배열에 추가
-                        coordinates.push({ x: result.x, y: result.y });
+                        coordinates.push({ x: parseFloat(result.x), y: parseFloat(result.y) });
                         console.log("좌표가 추가되었습니다:", coordinates);
 
                         // 마커를 추가하려면 최대 10개까지만 추가
