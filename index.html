@@ -110,6 +110,9 @@
                         // 지도 중심을 변경한다.
                         map.setCenter(coords);
 
+                        // 좌표를 배열에 추가
+                        coordinates.push({ x: result.x, y: result.y });
+
                         // 마커를 추가하려면 최대 10개까지만 추가
                         if (markers.length < 10) {
                             // 새 마커를 생성하고 지도에 표시
