@@ -113,6 +113,7 @@
 
                         // 좌표를 배열에 추가
                         coordinates.push({ x: result.x, y: result.y });
+                        console.log("좌표가 추가되었습니다:", coordinates);
 
                         // 마커를 추가하려면 최대 10개까지만 추가
                         if (markers.length < 10) {
@@ -150,10 +151,12 @@
             sumY += coord.y;
         });
 
-        return {
+        var mean = {
             x: sumX / coordinates.length,
             y: sumY / coordinates.length
         };
+        console.log("계산된 평균 좌표:", mean);
+      return mean;
     }
 
     var meanMarker = null; // 평균 마커를 저장할 변수
@@ -175,6 +178,7 @@
             map: map,
             title: "평균 위치"
         });
+      console.log("평균 마커가 추가되었습니다:", meanCoord);
     }
   </script>
 
