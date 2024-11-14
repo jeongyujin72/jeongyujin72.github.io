@@ -90,6 +90,9 @@
     // 좌표를 저장할 배열
     var coordinates = [];
 
+    // 지도 범위를 정의할 LatLngBounds 객체
+    var bounds = new daum.maps.LatLngBounds(); 
+
     function sample5_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -126,6 +129,9 @@
                             // 마커를 배열에 저장
                             markers.push(newMarker);
 
+                            // LatLngBounds 객체에 마커 위치 추가
+                            bounds.extend(coords);
+
                             // 새로운 주소 텍스트 필드를 생성
                             var addressList = document.getElementById("address-list");
                             var newInput = document.createElement("input");
@@ -134,6 +140,9 @@
                             newInput.disabled = true; // 수정 불가능하도록 설정
                             addressList.appendChild(newInput);
 
+                            // 모든 마커를 볼 수 있도록 지도 확대율 조정
+                            map.setBounds(bounds);
+          
                             addMeanMarker();
                         } else {
                             alert("최대 10개의 마커만 표시할 수 있습니다.");
