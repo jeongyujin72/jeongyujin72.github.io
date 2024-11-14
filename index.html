@@ -64,7 +64,7 @@
     <div id="input-box">
         <!-- 입력 필드들 -->
         <div id="address-list"></div> <!-- 새로 추가되는 주소 입력 칸을 표시할 곳 -->
-        <input type="button" onclick="sample5_execDaumPostcode()" value="위치 추가"><br>
+        <input type="button" onclick="sample5_execDaumPostcode()" value="위치 추가">
         <input type="button" value="완료"><br>
     </div>
   </div>
@@ -132,6 +132,8 @@
                             newInput.value = addr; // 새 입력 칸에 주소 추가
                             newInput.disabled = true; // 수정 불가능하도록 설정
                             addressList.appendChild(newInput);
+
+                            addMeanMarker();
                         } else {
                             alert("최대 10개의 마커만 표시할 수 있습니다.");
                         }
@@ -139,6 +141,40 @@
                 });
             }
         }).open();
+    }
+    function calculateMeanCoordinates() {
+        var sumX = 0, sumY = 0;
+
+        coordinates.forEach(coord => {
+            sumX += coord.x;
+            sumY += coord.y;
+        });
+
+        return {
+            x: sumX / coordinates.length,
+            y: sumY / coordinates.length
+        };
+    }
+
+    var meanMarker = null; // 평균 마커를 저장할 변수
+
+    function addMeanMarker() {
+        if (coordinates.length === 0) return;
+
+        var meanCoord = calculateMeanCoordinates();
+        var meanLatLng = new daum.maps.LatLng(meanCoord.y, meanCoord.x);
+
+        // 기존 평균 마커가 있으면 제거
+        if (meanMarker) {
+            meanMarker.setMap(null);
+        }
+
+        // 새로운 평균 마커 추가
+        meanMarker = new daum.maps.Marker({
+            position: meanLatLng,
+            map: map,
+            title: "평균 위치"
+        });
     }
   </script>
 
