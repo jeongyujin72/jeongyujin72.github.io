@@ -48,7 +48,6 @@ function sample5_execDaumPostcode() {
                             // 모든 마커를 볼 수 있도록 지도 확대율 조정
                             map.setBounds(bounds);
           
-                            addMeanMarker();
                         } else {
                             alert("최대 10개의 마커만 표시할 수 있습니다.");
                         }
