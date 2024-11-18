@@ -1,3 +1,15 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const completeButton = document.getElementById("complete-button");
+
+    if (completeButton) {
+        completeButton.addEventListener("click", function () {
+            // 중간 지점 계산 로직 호출
+            console.log("완료 버튼 클릭됨!");
+            calculateMeanCoordinates(); // 중간 지점 계산 함수 실행
+        });
+    }
+});
+
 function calculateMeanCoordinates() {
         var sumX = 0, sumY = 0;
 
