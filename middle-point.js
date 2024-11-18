@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
         completeButton.addEventListener("click", function () {
             // 중간 지점 계산 로직 호출
             console.log("완료 버튼 클릭됨!");
-            calculateMeanCoordinates(); // 중간 지점 계산 함수 실행
+            addMeanMarker(); // 중간 지점 계산 함수 실행
         });
     }
 });
