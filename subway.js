@@ -9,6 +9,9 @@ var ps = new kakao.maps.services.Places(map);
 // 원 내부의 마커 개수
 var markerCount = 0;
 
+// import 해온 반경을 업데이트 하기 위해 새로운 변수에 저장한다
+var circleRadius = radius;
+
 document.addEventListener("DOMContentLoaded", function () {
     const completeButton = document.getElementById("complete-button");
 
@@ -23,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 // 원 내부의 지하철역 검색
                 ps.categorySearch('SW8', placesSearchCB, {
                     location: meanMarker.getPosition(),
-                    radius: radius
+                    radius: circleRadius
                });
                 // 원 내부에 지하철역이 없으면 반경을 1km만큼 늘림
                 if (markerCount < 1){
-                    radius = radius + 1000;
+                    circleRadius = circleRadius + 1000;
                 }
                 else { break; }
             }
