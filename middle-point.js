@@ -67,4 +67,4 @@ var circle = new kakao.maps.Circle({
 
 // 원의 반경을 저장할 변수
 var radius = circle.getRadius();
-export { meanMarker, radius }
+export { meanMarker, circle, radius }
