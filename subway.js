@@ -21,6 +21,7 @@ function placesSearchCB (data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
         for (var i=0; i<data.length; i++) {
             displayMarker(data[i]);    
+            console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i]);
         }       
     }
 }
