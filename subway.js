@@ -31,9 +31,6 @@ function placesSearchCB (data, status, pagination) {
     }
 }
 
-// 지하철역 마커를 저장할 배열
-var subwayMarkers = [];
-
 // 지도에 마커를 표시하는 함수입니다
 function displayMarker(place) {
     // 마커를 생성하고 지도에 표시합니다
