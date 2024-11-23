@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (completeButton) {
         completeButton.addEventListener("click", function () {
-            console.log("완료 버튼 클릭됨!", meanMarker.getPosition());
+            console.log("완료 버튼 클릭됨!");
             
             // 카테고리로 지하철역을 검색
             ps.categorySearch('SW8', placesSearchCB, {
