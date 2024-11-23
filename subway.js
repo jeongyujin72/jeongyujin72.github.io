@@ -6,9 +6,6 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(map);  
 
-// 원 내부의 마커 개수
-var markerCount = 0;
-
 // import 해온 반경을 업데이트 하기 위해 새로운 변수에 저장한다
 var circleRadius = radius;
 console.log("circleRadius에 원의 반경 저장됨", circleRadius);
@@ -19,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (completeButton) {
         completeButton.addEventListener("click", function () {
             console.log("완료 버튼 클릭됨!");
+
+            // 원 내부의 마커 개수
+            var markerCount = 0;
 
             // 최대 10번까지 반경 확대
             for (let i = 0; i < 10; i++){
