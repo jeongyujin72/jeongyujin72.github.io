@@ -11,6 +11,7 @@ var markerCount = 0;
 
 // import 해온 반경을 업데이트 하기 위해 새로운 변수에 저장한다
 var circleRadius = radius;
+console.log("circleRadius에 원의 반경 저장됨", circleRadius);
 
 document.addEventListener("DOMContentLoaded", function () {
     const completeButton = document.getElementById("complete-button");
