@@ -9,9 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (completeButton) {
         completeButton.addEventListener("click", function () {
-            // 중간 지점 계산 로직 호출
             console.log("완료 버튼 클릭됨!");
-            ps.categorySearch('SW8', placesSearchCB, {useMapBounds:true}); // 카테고리로 지하철역을 검색
+            
+            // 카테고리로 지하철역을 검색
+            ps.categorySearch('SW8', placesSearchCB, {
+                location: meanMarker.getPosition()
+            });
         });
     }
 });
