@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // 원 내부에 지하철역이 없으면 반경을 1km만큼 늘림
                 if (markerCount < 1){
                     circleRadius = circleRadius + 1000;
+                    console.log("원의 반경 업데이트됨", circleRadius);
                 }
                 else { break; }
             }
