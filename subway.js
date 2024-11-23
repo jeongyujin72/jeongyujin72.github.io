@@ -10,56 +10,35 @@ var ps = new kakao.maps.services.Places(map);
 var circleRadius = radius;
 console.log("circleRadius에 원의 반경 저장됨", circleRadius);
 
+
 document.addEventListener("DOMContentLoaded", function () {
-    const completeButton = document.getElementById("complete-button");
+const completeButton = document.getElementById("complete-button");
 
     if (completeButton) {
-        completeButton.addEventListener("click", async function () {
+        completeButton.addEventListener("click", function () {
             console.log("완료 버튼 클릭됨!");
 
-            let markerCount = 0; // 원 내부의 마커 개수
+            // 원 내부의 마커 개수
+            var markerCount = 0;
 
-            // 최대 10번까지 반경 확대
-            for (let i = 0; i < 10; i++) {
-                console.log((i + 1) + "번째 루프 진행 중...");
-
-                // 원 내부의 마커 검색
-                markerCount = await new Promise((resolve) => {
-                    ps.categorySearch(
-                        'SW8',
-                        function placesSearchCB(data, status) {
-                            if (status === kakao.maps.services.Status.OK) {
-                                console.log(`data.length: ${data.length}`);
-                                resolve(data.length); // 마커 개수를 반환
-                            } else {
-                                resolve(0); // 검색 실패 시 0개로 처리
-                            }
-                        },
-                        {
-                            location: meanMarker.getPosition(),
-                            radius: circleRadius,
-                        }
-                    );
-                });
-
-                console.log("현재 원 내부 마커 개수:", markerCount);
-
-                // 원 내부에 지하철역이 있으면 루프 종료
-                if (markerCount >= 1) {
-                    console.log("원 내부에 마커가 존재합니다. 루프 종료.");
-                    break;
+            // 원 내부의 지하철역 검색
+            ps.categorySearch('SW8', placesSearchCB, {
+                location: meanMarker.getPosition(),
+                radius: circleRadius
+            });
+            // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+            function placesSearchCB (data, status, pagination) {
+                if (status === kakao.maps.services.Status.OK) {
+                    for (var i=0; i<data.length; i++) {
+                        displayMarker(data[i]);    
+                        console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i]);
+                        markerCount = markerCount + 1;
+                        console.log("마커 개수 업데이트됨", markerCount);
+                    }       
                 }
-
-                // 원 내부에 마커가 없으면 반경을 확장
-                circleRadius += 1000;
-                console.log("원의 반경이 확대되었습니다:", circleRadius);
             }
-
-            if (markerCount < 1) {
-                console.log("반복이 끝난 후에도 원 내부에 마커가 없습니다.");
-            }
-        });
-    }
+    });
+}
 });
 
 
