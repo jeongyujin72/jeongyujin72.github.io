@@ -7,8 +7,8 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 var ps = new kakao.maps.services.Places(map);  
 
 // import 해온 반경을 업데이트 하기 위해 새로운 변수에 저장한다
-var circleRadius = radius;
-console.log("circleRadius에 원의 반경 저장됨", circleRadius);
+// var circleRadius = radius;
+// console.log("circleRadius에 원의 반경 저장됨", circleRadius);
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -24,7 +24,7 @@ const completeButton = document.getElementById("complete-button");
             // 원 내부의 지하철역 검색
             ps.categorySearch('SW8', placesSearchCB, {
                 location: meanMarker.getPosition(),
-                radius: circleRadius
+                radius: radius
             });
             // 키워드 검색 완료 시 호출되는 콜백함수 입니다
             function placesSearchCB (data, status, pagination) {
