@@ -64,3 +64,5 @@ function calculateMeanCoordinates() {
       circle.setMap(map);
       console.log("원이 생성되었습니다");
     }
+
+export { meanMarker }
