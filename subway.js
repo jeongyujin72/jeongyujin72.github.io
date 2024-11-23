@@ -21,10 +21,13 @@ function placesSearchCB (data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
         for (var i=0; i<data.length; i++) {
             displayMarker(data[i]);    
-            console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i].getPosition());
+            console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i]);
         }       
     }
 }
+
+// 지하철역 마커를 저장할 배열
+var subwayMarkers = [];
 
 // 지도에 마커를 표시하는 함수입니다
 function displayMarker(place) {
