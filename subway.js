@@ -15,12 +15,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (completeButton) {
         completeButton.addEventListener("click", function () {
             console.log("완료 버튼 클릭됨!");
-            
-            // 카테고리로 지하철역을 검색
-            ps.categorySearch('SW8', placesSearchCB, {
-                location: meanMarker.getPosition(),
-                radius: radius
-           });
+
+            // 최대 10번까지 반경 확대
+            for (let i = 0; i < 10; i++){
+                console.log((i + 1) + "번째 루프 진행 중...");
+                
+                // 원 내부의 지하철역 검색
+                ps.categorySearch('SW8', placesSearchCB, {
+                    location: meanMarker.getPosition(),
+                    radius: radius
+               });
+                // 원 내부에 지하철역이 없으면 반경을 1km만큼 늘림
+                if (markerCount < 1){
+                    radius = radius + 1000;
+                }
+                else { break; }
+            }
         });
     }
 });
