@@ -66,6 +66,7 @@ function addMeanMarker() {
 
         // 원의 반경을 저장할 변수
         var radius = circle.getRadius();
+        console.log("원의 반경 저장됨.", radius);
     }
 
 
