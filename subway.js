@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
             
             // 카테고리로 지하철역을 검색
             ps.categorySearch('SW8', placesSearchCB, {
-                useMapBounds:true
-            });
+                location: meanMarker.getPosition()
+           });
         });
     }
 });
