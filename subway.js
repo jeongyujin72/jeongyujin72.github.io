@@ -6,6 +6,9 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(map);  
 
+// 원 내부의 마커 개수
+var markerCount = 0;
+
 document.addEventListener("DOMContentLoaded", function () {
     const completeButton = document.getElementById("complete-button");
 
@@ -28,6 +31,8 @@ function placesSearchCB (data, status, pagination) {
         for (var i=0; i<data.length; i++) {
             displayMarker(data[i]);    
             console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i]);
+            markerCount = markerCount + 1;
+            console.log("마커 개수 업데이트됨", markerCount);
         }       
     }
 }
