@@ -63,11 +63,11 @@ function addMeanMarker() {
         // 지도에 원을 표시합니다 
         circle.setMap(map);
         console.log("원이 생성되었습니다");
-
-        // 원의 반경을 저장할 변수
-        var radius = circle.getRadius();
-        console.log("원의 반경 저장됨.", radius);
     }
 
+
+// 원의 반경을 저장할 변수
+var radius = circle.getRadius();
+console.log("원의 반경 저장됨.", radius);
 
 export { meanMarker, radius }
