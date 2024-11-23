@@ -29,6 +29,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     location: meanMarker.getPosition(),
                     radius: circleRadius
                });
+                // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+                function placesSearchCB (data, status, pagination) {
+                    if (status === kakao.maps.services.Status.OK) {
+                        for (var i=0; i<data.length; i++) {
+                            displayMarker(data[i]);    
+                            console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i]);
+                            markerCount = markerCount + 1;
+                            console.log("마커 개수 업데이트됨", markerCount);
+                        }       
+                    }
+                }
                 // 원 내부에 지하철역이 없으면 반경을 1km만큼 늘림
                 if (markerCount < 1){
                     circleRadius = circleRadius + 1000;
@@ -39,18 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
-// 키워드 검색 완료 시 호출되는 콜백함수 입니다
-function placesSearchCB (data, status, pagination) {
-    if (status === kakao.maps.services.Status.OK) {
-        for (var i=0; i<data.length; i++) {
-            displayMarker(data[i]);    
-            console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i]);
-            markerCount = markerCount + 1;
-            console.log("마커 개수 업데이트됨", markerCount);
-        }       
-    }
-}
 
 // 지도에 마커를 표시하는 함수입니다
 function displayMarker(place) {
