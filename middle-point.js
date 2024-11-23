@@ -27,6 +27,7 @@ function calculateMeanCoordinates() {
     }
 
 var meanMarker = null; // 평균 마커를 저장할 변수
+var radius = null; // 원의 반경을 저장할 변수
 
 function addMeanMarker() {
         if (coordinates.length === 0) return;
@@ -63,11 +64,12 @@ function addMeanMarker() {
         // 지도에 원을 표시합니다 
         circle.setMap(map);
         console.log("원이 생성되었습니다");
+    
+
+        // 원의 반경을 저장할 변수
+        radius = circle.getRadius();
+        console.log("원의 반경 저장됨.", radius);
     }
 
-
-// 원의 반경을 저장할 변수
-var radius = circle.getRadius();
-console.log("원의 반경 저장됨.", radius);
 
 export { meanMarker, radius }
