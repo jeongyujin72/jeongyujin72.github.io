@@ -26,9 +26,9 @@ function calculateMeanCoordinates() {
       return mean;
     }
 
-    var meanMarker = null; // 평균 마커를 저장할 변수
+var meanMarker = null; // 평균 마커를 저장할 변수
 
-    function addMeanMarker() {
+function addMeanMarker() {
         if (coordinates.length === 0) return;
 
         var meanCoord = calculateMeanCoordinates();
@@ -45,11 +45,11 @@ function calculateMeanCoordinates() {
             map: map,
             title: "평균 위치"
         });
-      map.setCenter(meanLatLng);
-      console.log("평균 마커가 추가되었습니다:", meanCoord);
+map.setCenter(meanLatLng);
+console.log("평균 마커가 추가되었습니다:", meanCoord);
         
-      // 지도에 표시할 원을 생성합니다
-      var circle = new kakao.maps.Circle({
+// 지도에 표시할 원을 생성합니다
+var circle = new kakao.maps.Circle({
       center : new kakao.maps.LatLng(meanCoord.y, meanCoord.x),  // 원의 중심좌표
       radius: 1500, // 미터 단위의 원의 반지름입니다 
       strokeWeight: 5, // 선의 두께입니다 
@@ -58,11 +58,13 @@ function calculateMeanCoordinates() {
       strokeStyle: 'dashed', // 선의 스타일 입니다
       fillColor: '#CFE7FF', // 채우기 색깔입니다
       fillOpacity: 0.7  // 채우기 불투명도 입니다   
-      }); 
+    }); 
         
-      // 지도에 원을 표시합니다 
-      circle.setMap(map);
-      console.log("원이 생성되었습니다");
+    // 지도에 원을 표시합니다 
+    circle.setMap(map);
+    console.log("원이 생성되었습니다");
     }
 
+// 원의 반경을 저장할 변수
+var radius = circle.getRadius();
 export { meanMarker, radius }
