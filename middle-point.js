@@ -65,4 +65,4 @@ function calculateMeanCoordinates() {
       console.log("원이 생성되었습니다");
     }
 
-export { meanMarker }
+export { meanMarker, radius }
