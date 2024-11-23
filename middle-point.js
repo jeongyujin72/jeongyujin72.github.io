@@ -69,4 +69,4 @@ function addMeanMarker() {
     }
 
 
-export { meanMarker }
+export { meanMarker, radius }
