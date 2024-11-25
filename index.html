@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="module" src="APIkey.js"></script>
+    <script type="module">
+      import { KAKAOMAP_API_KEY_js } from './APIkey.js';
+      console.log("API key 불러옴!");
+    </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=KAKAOMAP_API_KEY_js&libraries=services"></script>
 
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
