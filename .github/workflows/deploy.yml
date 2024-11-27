@@ -15,7 +15,7 @@ jobs:
 
     - name: Replace placeholder with API key
       run: |
-        echo "Replacing placeholder in HTML/JS with API key"
+        echo "API key : ${{ secrets.KAKAOMAP_API_KEY_JS }}"
         sed -i 's/KAKAOMAP_API_KEY_JS/${{ secrets.KAKAOMAP_API_KEY_JS }}/g' index.html
 
     - name: Deploy to GitHub Pages
