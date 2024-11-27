@@ -22,6 +22,7 @@ jobs:
 
     - name: Debug replaced HTML
       run: cat index.html
+      continue-on-error: true
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
