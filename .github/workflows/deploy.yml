@@ -1,10 +1,9 @@
-# .github/workflows/deploy.yml
-name: Deploy
+name: Deploy GitHub Pages with Secret API Key
 
 on:
   push:
     branches:
-      - master
+      - main  # 배포할 브랜치 이름
 
 jobs:
   deploy:
@@ -14,7 +13,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up environment variables
-      run: echo "KAKAOMAP_API_KEY_JS=${{ secrets.KAKAOMAP_API_KEY_JS }}" >> .env
-      env:
-          KAKAOMAP_API_KEY_JS: ${{secrets.KAKAOMAP_API_KEY_JS}}
+    - name: Replace placeholder with API key
+      run: |
+        echo "Replacing placeholder in HTML/JS with API key"
+        sed -i 's/KAKAOMAP_API_KEY_JS/${{ secrets.KAKAOMAP_API_KEY_JS }}/g' index.html
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./  # 배포할 디렉토리 (index.html 위치)
