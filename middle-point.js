@@ -124,6 +124,10 @@ const completeButton = document.getElementById("complete-button");
                 if (markerCount === 0) {
                 radius += 1000; // 반경 1000m씩 증가
                 console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
+
+                // 지도에 원을 표시합니다 
+                circle.setMap(map);
+                console.log("원이 생성되었습니다. 반경: ", radius);
                 
                 // 재귀 호출
                 ps.categorySearch('SW8', placesSearchCB, {
