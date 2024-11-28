@@ -124,12 +124,14 @@ const completeButton = document.getElementById("complete-button");
                 // 마커가 없으면 반경을 증가시키고 다시 검색
                 if (markerCount === 0) {
                 circle.setMap(null); // 기존 원 삭제
+                console.log("기존 원 삭제되었습니다.");
+                
                 radius += 1000; // 반경 1000m씩 증가
                 console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
 
                 // 지도에 원을 표시합니다 
                 circle.setMap(map);
-                console.log("원이 생성되었습니다. 반경: ", radius);
+                console.log("새로운 원이 생성되었습니다. 반경: ", radius);
                 
                 // 재귀 호출
                 ps.categorySearch('SW8', placesSearchCB, {
