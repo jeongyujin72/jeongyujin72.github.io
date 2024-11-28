@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
 
                 // 지도에 원을 표시합니다 
-                // circle.setMap(map);
-                // console.log("새로운 원이 생성되었습니다. 반경: ", radius);
+                circle.setMap(map);
+                console.log("새로운 원이 생성되었습니다. 반경: ", radius);
                 
                 // 재귀 호출로 지하철역 탐색 반복
                 ps.categorySearch('SW8', placesSearchCB, {
@@ -109,7 +109,7 @@ function addMeanMarker() {
         fillColor: '#CFE7FF', // 채우기 색깔입니다
         fillOpacity: 0.7  // 채우기 불투명도 입니다   
         });
-        
+
         circle.setMap(null);
     }
 
