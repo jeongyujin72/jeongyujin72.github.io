@@ -33,6 +33,7 @@ function calculateMeanCoordinates() {
 
 
 var meanMarker = null; // 평균 마커를 저장할 변수
+var circle = null; // 원을 저장할 변수
 var radius = 1500; // 원의 반경을 저장할 변수
 
 // 중간 지점 마커 표시 함수
@@ -57,7 +58,7 @@ function addMeanMarker() {
         console.log("평균 마커가 추가되었습니다:", meanCoord);
         
         // 지도에 표시할 원을 생성합니다
-        var circle = new kakao.maps.Circle({
+        circle = new kakao.maps.Circle({
         center : new kakao.maps.LatLng(meanCoord.y, meanCoord.x),  // 원의 중심좌표
         radius: radius, // 미터 단위의 원의 반지름입니다 
         strokeWeight: 5, // 선의 두께입니다 
@@ -66,16 +67,11 @@ function addMeanMarker() {
         strokeStyle: 'dashed', // 선의 스타일 입니다
         fillColor: '#CFE7FF', // 채우기 색깔입니다
         fillOpacity: 0.7  // 채우기 불투명도 입니다   
-        }); 
-            
-        // 지도에 원을 표시합니다 
-        circle.setMap(map);
-        console.log("원이 생성되었습니다");
-    
+        });     
 
         // 원의 반경을 저장할 변수
-        radius = circle.getRadius();
-        console.log("원의 반경 저장됨.", radius);
+        // radius = circle.getRadius();
+        // console.log("원의 반경 저장됨.", radius);
     }
 
 // export { meanMarker, radius }
@@ -101,6 +97,10 @@ const completeButton = document.getElementById("complete-button");
         completeButton.addEventListener("click", function () {
             console.log("완료 버튼 클릭됨!");
 
+            // 지도에 원을 표시
+            circle.setMap(map);
+            console.log("원이 생성되었습니다");
+
             // 원 내부의 마커 개수
             var markerCount = 0;
 
@@ -120,8 +120,10 @@ const completeButton = document.getElementById("complete-button");
                     markerCount = data.length;
                     console.log("마커 개수 업데이트됨: ", markerCount);       
                 }
+
                 // 마커가 없으면 반경을 증가시키고 다시 검색
                 if (markerCount === 0) {
+                circle.setMap(null); // 기존 원 삭제
                 radius += 1000; // 반경 1000m씩 증가
                 console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
 
