@@ -91,6 +91,10 @@ const completeButton = document.getElementById("complete-button");
         completeButton.addEventListener("click", function () {
             console.log("완료 버튼 클릭됨!");
 
+            if(circle){
+                circle.setMap(null);
+            }
+
             // 지도에 원을 표시
             circle.setMap(map);
             console.log("원이 생성되었습니다");
