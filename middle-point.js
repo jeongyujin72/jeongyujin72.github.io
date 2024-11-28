@@ -108,11 +108,9 @@ function addMeanMarker() {
         strokeStyle: 'dashed', // 선의 스타일 입니다
         fillColor: '#CFE7FF', // 채우기 색깔입니다
         fillOpacity: 0.7  // 채우기 불투명도 입니다   
-        });     
-
-        // 원의 반경을 저장할 변수
-        // radius = circle.getRadius();
-        // console.log("원의 반경 저장됨.", radius);
+        });
+        
+        circle.setMap(null);
     }
 
 // export { meanMarker, radius }
