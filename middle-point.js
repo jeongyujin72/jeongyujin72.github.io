@@ -1,3 +1,10 @@
+// middle-point.js
+
+var meanMarker = null; // 평균 마커를 저장할 변수
+var circle = null; // 원을 저장할 변수
+var radius = 1500; // 원의 반경을 저장할 변수
+
+
 // 완료 버튼이 클릭되면 중간 지점 계산 함수 실행
 document.addEventListener("DOMContentLoaded", function () {
     const completeButton = document.getElementById("complete-button");
@@ -7,12 +14,49 @@ document.addEventListener("DOMContentLoaded", function () {
             // 중간 지점 계산 로직 호출
             console.log("완료 버튼 클릭됨!");
             addMeanMarker(); // 중간 지점 마커 표시
+
+            // 원 내부의 마커 개수
+            var markerCount = 0;
+
+            // 원 내부의 지하철 역 검색
+            ps.categorySearch('SW8', placesSearchCB, {
+                location: meanMarker.getPosition(),
+                radius: radius
+            });
+
+            // 키워드 검색 완료 시 호출되는 콜백함수
+            function placesSearchCB (data, status, pagination) {
+                if (status === kakao.maps.services.Status.OK) {
+                    for (var i=0; i<data.length; i++) {
+                        displayMarker(data[i]);    
+                        console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i]);
+                    }
+                    markerCount = data.length;
+                    console.log("마커 개수 업데이트됨: ", markerCount);       
+                }
+
+                // 마커가 없으면 반경을 증가시키고 다시 검색
+                if (markerCount === 0) {
+                circle.setMap(null); // 기존 원 삭제
+                console.log("기존 원 삭제되었습니다.");
+
+                radius += 1000; // 반경 1000m씩 증가
+                console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
+
+                // 지도에 원을 표시합니다 
+                circle.setMap(map);
+                console.log("새로운 원이 생성되었습니다. 반경: ", radius);
+                
+                // 재귀 호출로 지하철역 탐색 반복
+                ps.categorySearch('SW8', placesSearchCB, {
+                    location: meanMarker.getPosition(),
+                    radius: radius
+                }); 
+                }
+            }
         });
     }
 });
-
-// 원의 반경 저장하는 변수
-var radius = null;
 
 // 중간 지점 계산 함수
 function calculateMeanCoordinates() {
@@ -32,9 +76,6 @@ function calculateMeanCoordinates() {
     }
 
 
-var meanMarker = null; // 평균 마커를 저장할 변수
-var circle = null; // 원을 저장할 변수
-var radius = 1500; // 원의 반경을 저장할 변수
 
 // 중간 지점 마커 표시 함수
 function addMeanMarker() {
@@ -83,65 +124,6 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(map);  
-
-document.addEventListener("DOMContentLoaded", function () {
-const completeButton = document.getElementById("complete-button");
-
-    if (completeButton) {
-        completeButton.addEventListener("click", function () {
-            console.log("완료 버튼 클릭됨!");
-
-            if(circle){
-                circle.setMap(null);
-            }
-
-            // 지도에 원을 표시
-            circle.setMap(map);
-            console.log("원이 생성되었습니다");
-
-            // 원 내부의 마커 개수
-            var markerCount = 0;
-
-            // 원 내부의 지하철 역 검색
-            ps.categorySearch('SW8', placesSearchCB, {
-                location: meanMarker.getPosition(),
-                radius: radius
-            });
-
-            // 키워드 검색 완료 시 호출되는 콜백함수
-            function placesSearchCB (data, status, pagination) {
-                if (status === kakao.maps.services.Status.OK) {
-                    for (var i=0; i<data.length; i++) {
-                        displayMarker(data[i]);    
-                        console.log("data 배열에 저장된 장소가 마커로 표시되었음.", data[i]);
-                    }
-                    markerCount = data.length;
-                    console.log("마커 개수 업데이트됨: ", markerCount);       
-                }
-
-                // 마커가 없으면 반경을 증가시키고 다시 검색
-                if (markerCount === 0) {
-                circle.setMap(null); // 기존 원 삭제
-                console.log("기존 원 삭제되었습니다.");
-
-                radius += 1000; // 반경 1000m씩 증가
-                console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
-
-                // 지도에 원을 표시합니다 
-                circle.setMap(map);
-                console.log("새로운 원이 생성되었습니다. 반경: ", radius);
-                
-                // 재귀 호출로 지하철역 탐색 반복
-                ps.categorySearch('SW8', placesSearchCB, {
-                    location: meanMarker.getPosition(),
-                    radius: radius
-                }); 
-                }
-            }
-        });
-    }
-});
-
 
 // 지도에 마커를 표시하는 함수입니다
 function displayMarker(place) {
