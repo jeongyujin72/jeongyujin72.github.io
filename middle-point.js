@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("완료 버튼 클릭됨!");
             addMeanMarker(); // 중간 지점 마커 표시
 
+            addCircle(radius);
+
             // 원 내부의 마커 개수
             var markerCount = 0;
 
@@ -37,11 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // 마커가 없으면 반경을 증가시키고 다시 검색
                 if (markerCount === 0) {
-                circle.setMap(null); // 기존 원 삭제
+                circle.setMap(null);
                 console.log("기존 원 삭제되었습니다.");
 
                 radius += 1000; // 반경 1000m씩 증가
                 console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
+
+                // 원 생성
+                addCircle(radius);
 
                 // 지도에 원을 표시합니다 
                 circle.setMap(map);
@@ -75,14 +80,15 @@ function calculateMeanCoordinates() {
       return mean;
     }
 
-
+var meanCoord = null;   // 평균 좌표 순서쌍
+var meanLatLng = null;  // 평균 좌표 경도, 위도
 
 // 중간 지점 마커 표시 함수
 function addMeanMarker() {
         if (coordinates.length === 0) return;
 
-        var meanCoord = calculateMeanCoordinates();
-        var meanLatLng = new daum.maps.LatLng(meanCoord.y, meanCoord.x);
+        meanCoord = calculateMeanCoordinates();
+        meanLatLng = new daum.maps.LatLng(meanCoord.y, meanCoord.x);
 
         // 기존 평균 마커가 있으면 제거
         if (meanMarker) {
@@ -96,10 +102,12 @@ function addMeanMarker() {
             title: "평균 위치"
         });
         map.setCenter(meanLatLng);
-        console.log("평균 마커가 추가되었습니다:", meanCoord);
-        
-        // 지도에 표시할 원을 생성합니다
-        circle = new kakao.maps.Circle({
+        console.log("평균 마커가 추가되었습니다:", meanCoord);        
+}
+
+function addCircle(radius){
+    // 지도에 표시할 원을 생성합니다
+    circle = new kakao.maps.Circle({
         center : new kakao.maps.LatLng(meanCoord.y, meanCoord.x),  // 원의 중심좌표
         radius: radius, // 미터 단위의 원의 반지름입니다 
         strokeWeight: 5, // 선의 두께입니다 
@@ -109,10 +117,7 @@ function addMeanMarker() {
         fillColor: '#CFE7FF', // 채우기 색깔입니다
         fillOpacity: 0.7  // 채우기 불투명도 입니다   
         });
-
-        circle.setMap(null);
-    }
-
+}
 // export { meanMarker, radius }
 
 // import { meanMarker, radius } from './middle-point.js'
