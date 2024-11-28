@@ -14,9 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
             // 중간 지점 계산 로직 호출
             console.log("완료 버튼 클릭됨!");
                
-            // 완료 버튼 두번째로 눌리는 경우부터는 기존 원 삭제
+            // 완료 버튼 두번째로 눌리는 경우 
+            // 기존 원 삭제
             if(circle){
                 circle.setMap(null);
+            }
+            // 기존 지하철역 마커 삭제
+            if (data.length > 0){
+                data.length = 0;
             }
 
             var radius = 1500; // 원 반경 1.5km로 초기화
