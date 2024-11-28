@@ -2,7 +2,7 @@
 
 var meanMarker = null; // 평균 마커를 저장할 변수
 var circle = null; // 원을 저장할 변수
-var radius = 1500; // 원의 반경을 저장할 변수
+var radius = null; // 원의 반경을 저장할 변수
 
 
 // 완료 버튼이 클릭되면 중간 지점 계산 함수 실행
@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if(circle){
                 circle.setMap(null);
             }
+
+            var radius = 1500; // 원 반경 1.5km로 초기화
 
             addMeanMarker(); // 중간 지점 마커 표시
 
