@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
         completeButton.addEventListener("click", function () {
             // 중간 지점 계산 로직 호출
             console.log("완료 버튼 클릭됨!");
+               
+            // 완료 버튼 두번째로 눌리는 경우부터는 기존 원 삭제
+            if(circle){
+                circle.setMap(null);
+            }
+
             addMeanMarker(); // 중간 지점 마커 표시
 
             addCircle(radius);
