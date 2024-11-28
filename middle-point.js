@@ -99,6 +99,7 @@ function addMeanMarker() {
         // 기존 평균 마커가 있으면 제거
         if (meanMarker) {
             meanMarker.setMap(null);
+            console.log("기존 중점 마커 제거");
         }
 
         // 새로운 평균 마커 추가
