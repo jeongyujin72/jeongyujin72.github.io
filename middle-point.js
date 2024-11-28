@@ -84,12 +84,6 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(map);  
 
-// import 해온 반경을 업데이트 하기 위해 새로운 변수에 저장한다
-// var circleRadius = radius;
-// console.log("circleRadius에 원의 반경 저장됨", circleRadius);
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
 const completeButton = document.getElementById("complete-button");
 
@@ -110,7 +104,7 @@ const completeButton = document.getElementById("complete-button");
                 radius: radius
             });
 
-            // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+            // 키워드 검색 완료 시 호출되는 콜백함수
             function placesSearchCB (data, status, pagination) {
                 if (status === kakao.maps.services.Status.OK) {
                     for (var i=0; i<data.length; i++) {
@@ -125,7 +119,7 @@ const completeButton = document.getElementById("complete-button");
                 if (markerCount === 0) {
                 circle.setMap(null); // 기존 원 삭제
                 console.log("기존 원 삭제되었습니다.");
-                
+
                 radius += 1000; // 반경 1000m씩 증가
                 console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
 
@@ -133,7 +127,7 @@ const completeButton = document.getElementById("complete-button");
                 circle.setMap(map);
                 console.log("새로운 원이 생성되었습니다. 반경: ", radius);
                 
-                // 재귀 호출
+                // 재귀 호출로 지하철역 탐색 반복
                 ps.categorySearch('SW8', placesSearchCB, {
                     location: meanMarker.getPosition(),
                     radius: radius
