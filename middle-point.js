@@ -78,6 +78,7 @@ function calculateMeanCoordinates() {
         coordinates.forEach(coord => {
             sumX += coord.x;
             sumY += coord.y;
+            console.log("coord", coord);
         });
 
         var mean = {
