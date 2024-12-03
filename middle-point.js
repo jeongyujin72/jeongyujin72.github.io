@@ -72,56 +72,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // 중간 지점 계산 함수
-function calculateGeometricMedian() {
-    var currentX = 0, currentY = 0;
-
-    // 초기값: 평균으로 설정
-    coordinates.forEach(coord => {
-        currentX += coord.x;
-        currentY += coord.y;
-    });
-
-    currentX /= coordinates.length;
-    currentY /= coordinates.length;
-
-    var tolerance = 1e-6; // 수렴 기준
-    var maxIterations = 1000; // 최대 반복 횟수
-    var iteration = 0;
-    var change = Infinity;
-
-    while (change > tolerance && iteration < maxIterations) {
-        var weightedSumX = 0, weightedSumY = 0, weightSum = 0;
+function calculateMeanCoordinates() {
+        var sumX = 0, sumY = 0;
 
         coordinates.forEach(coord => {
-            var distance = Math.sqrt((currentX - coord.x) ** 2 + (currentY - coord.y) ** 2);
-            if (distance === 0) return; // 중심과 동일한 점은 무시
-            var weight = 1 / distance; // 거리의 역수
-            weightedSumX += weight * coord.x;
-            weightedSumY += weight * coord.y;
-            weightSum += weight;
+            sumX += coord.x;
+            sumY += coord.y;
         });
 
-        if (weightSum === 0) break; // 모든 점이 중심에 있는 경우
-
-        var newX = weightedSumX / weightSum;
-        var newY = weightedSumY / weightSum;
-
-        // 변화량 계산
-        change = Math.sqrt((newX - currentX) ** 2 + (newY - currentY) ** 2);
-
-        currentX = newX;
-        currentY = newY;
-        iteration++;
+        var mean = {
+            x: sumX / coordinates.length,
+            y: sumY / coordinates.length
+        };
+        console.log("계산된 평균 좌표:", mean);
+      return mean;
     }
-
-    var mean = {
-        x: currentX,
-        y: currentY
-    };
-
-    console.log("계산된 중심 좌표 (Geometric Median):", mean);
-    return mean;
-}
 
 
 var meanCoord = null;   // 평균 좌표 순서쌍
@@ -131,7 +96,7 @@ var meanLatLng = null;  // 평균 좌표 경도, 위도
 function addMeanMarker() {
         if (coordinates.length === 0) return;
 
-        meanCoord = calculateGeometricMedian();
+        meanCoord = calculateMeanCoordinates();
         meanLatLng = new daum.maps.LatLng(meanCoord.y, meanCoord.x);
 
         // 기존 평균 마커가 있으면 제거
