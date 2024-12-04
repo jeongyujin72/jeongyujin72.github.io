@@ -73,20 +73,77 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // 중간 지점 계산 함수
 function calculateMeanCoordinates() {
-        var sumX = 0, sumY = 0;
-
-        coordinates.forEach(coord => {
-            sumX += coord.x;
-            sumY += coord.y;
-        });
-
-        var mean = {
-            x: sumX / coordinates.length,
-            y: sumY / coordinates.length
-        };
-        console.log("계산된 평균 좌표:", mean);
-      return mean;
+    // 점들을 섞는 함수
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
+
+    // 두 점으로 원 만들기
+    function circleFromTwoPoints(p1, p2) {
+        const centerX = (p1.x + p2.x) / 2;
+        const centerY = (p1.y + p2.y) / 2;
+        const radius = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2) / 2;
+        return { x: centerX, y: centerY, radius };
+    }
+
+    // 세 점으로 원 만들기
+    function circleFromThreePoints(p1, p2, p3) {
+        const A = p2.x - p1.x;
+        const B = p2.y - p1.y;
+        const C = p3.x - p1.x;
+        const D = p3.y - p1.y;
+
+        const E = A * (p1.x + p2.x) + B * (p1.y + p2.y);
+        const F = C * (p1.x + p3.x) + D * (p1.y + p3.y);
+
+        const G = 2 * (A * (p3.y - p2.y) - B * (p3.x - p2.x));
+        if (Math.abs(G) < 1e-6) return null; // 세 점이 한 직선상에 있음
+
+        const centerX = (D * E - B * F) / G;
+        const centerY = (A * F - C * E) / G;
+        const radius = Math.sqrt((centerX - p1.x) ** 2 + (centerY - p1.y) ** 2);
+        return { x: centerX, y: centerY, radius };
+    }
+
+    // 점이 원 안에 있는지 확인
+    function isPointInCircle(circle, point) {
+        return Math.sqrt((circle.x - point.x) ** 2 + (circle.y - point.y) ** 2) <= circle.radius + 1e-6;
+    }
+
+    // Welzl 알고리즘
+    function welzl(points, boundary = []) {
+        if (points.length === 0 || boundary.length === 3) {
+            if (boundary.length === 0) return null;
+            if (boundary.length === 1) return { x: boundary[0].x, y: boundary[0].y, radius: 0 };
+            if (boundary.length === 2) return circleFromTwoPoints(boundary[0], boundary[1]);
+            return circleFromThreePoints(boundary[0], boundary[1], boundary[2]);
+        }
+
+        const p = points.pop();
+        const circle = welzl(points, boundary);
+
+        if (circle && isPointInCircle(circle, p)) return circle;
+
+        return welzl(points, boundary.concat([p]));
+    }
+
+    // 최소 외접 원 계산
+    shuffle(coordinates);
+    const enclosingCircle = welzl(coordinates.slice());
+
+    // 중심 좌표 반환
+    var mean = {
+        x: enclosingCircle.x,
+        y: enclosingCircle.y
+    };
+
+    console.log("계산된 중심 좌표:", mean);
+    return mean;
+}
+
 
 
 var meanCoord = null;   // 평균 좌표 순서쌍
