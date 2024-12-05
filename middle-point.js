@@ -77,7 +77,7 @@ function calculateMeanCoordinates() {
 
         coordinates.forEach(coord => {
             sumX += coord.x;
-            sumY += coord.y; 
+            sumY += coord.y;
         });
 
         var mean = {
@@ -87,6 +87,8 @@ function calculateMeanCoordinates() {
         console.log("계산된 평균 좌표:", mean);
       return mean;
     }
+
+
 
 var meanCoord = null;   // 평균 좌표 순서쌍
 var meanLatLng = null;  // 평균 좌표 경도, 위도
