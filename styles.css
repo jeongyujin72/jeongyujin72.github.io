@@ -9,6 +9,8 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: 100%;
+    padding: 10px;
     height: 100vh;
     padding-right: 20px;
     position: relative; 
@@ -63,30 +65,30 @@ button, input[type="button"] {
 }
 
 button:hover, input[type="button"]:hover {
-    background-color: #0056b3;
+    background-color: #4e4e4e;
 }
 
-/* 새로운 추가: 주소 입력 필드와 삭제 버튼 스타일 */
-.address-wrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    position: relative; /* 삭제 버튼의 위치 조정 */
-    margin-bottom: 10px;
+/* 입력 필드 스타일 */
+.address-wrapper input[type="text"] {
+    flex: 1; /* 남은 공간을 채우도록 설정 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
 }
 
+/* 삭제 버튼 위치 조정 */
 .address-wrapper .delete-button {
+    position: absolute;
+    right: 10px; /* 입력 필드 오른쪽 끝에서 10px 떨어짐 */
+    top: 50%; /* 입력 필드의 중앙에 위치 */
+    transform: translateY(-50%); /* 수직 중앙 정렬 */
     background: none;
     border: none;
     color: #888;
     font-size: 18px;
-    margin-left: 8px;
     cursor: pointer;
     transition: color 0.3s ease;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .address-wrapper .delete-button:hover {
