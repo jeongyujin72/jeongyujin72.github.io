@@ -29,7 +29,6 @@ function sample5_execDaumPostcode() {
               );
               if (index > -1) {
                 coordinates.splice(index, 1);
-                markers[index].setMap(null);
                 markers.splice(index, 1);
                 wrapper.remove();
                 console.log("삭제된 좌표:", coordinates);
