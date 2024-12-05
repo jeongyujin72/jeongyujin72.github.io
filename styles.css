@@ -1,50 +1,84 @@
 body {
-            font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
-            margin: 0;
-            padding: 0;
-        }
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+}
 
-        .wrapper {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            height: 100vh;
-            padding-right: 20px;
-            position: relative; 
-        }
+.wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+    padding-right: 20px;
+    position: relative; 
+}
 
-        #input-box {
-            width: 30vw;  
-            height: 450px; 
-            border: 2px solid #ffffff;
-            border-radius: 8px;
-            padding: 30px;
-            background-color: #ffffff;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-            position: relative; 
-            z-index: 10;
-        }
+#input-box {
+    width: 30vw;  
+    height: 450px; 
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    background-color: #ffffff;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    position: relative; 
+    z-index: 10;
+}
 
-        input {
-            width: 100%; 
-            padding: 10px;
-            border: none; 
-            border-bottom: 1px solid #7a7a7a; 
-            outline: none; 
-            box-sizing: border-box;
-            cursor: pointer; 
-        }
+input {
+    width: 100%; 
+    padding: 10px;
+    border: none; 
+    border-bottom: 1px solid #7a7a7a; 
+    outline: none; 
+    box-sizing: border-box;
+}
 
-        #map {
-            position: absolute;
-            top: 0;  
-            left: 0;
-            width: 65vw;  
-            height: 100vh;
-        }
+#map {
+    position: absolute;
+    top: 0;  
+    left: 0;
+    width: 65vw;  
+    height: 100vh;
+}
+
+/* 새로운 추가: 주소 입력 필드와 삭제 버튼 스타일 */
+.address-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative; /* 삭제 버튼의 위치 조정 */
+}
+
+.address-wrapper input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.address-wrapper .delete-button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 18px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.address-wrapper .delete-button:hover {
+    color: #ff5c5c;
+}
