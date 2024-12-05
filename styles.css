@@ -85,22 +85,12 @@ button:hover, input[type="button"]:hover {
     margin-bottom: 10px; /* 각 주소 블록 간의 간격 */
 }
 
-/* 입력 필드 스타일 */
-.address-wrapper input[type="text"] {
-    flex: 1; /* 남은 공간을 입력 필드가 모두 차지 */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    box-sizing: border-box; /* 패딩 포함 크기 계산 */
-}
-
 /* 삭제 버튼 스타일 */
 .address-wrapper .delete-button {
     flex: 0 0 auto; /* 크기를 고정 */
     background: none;
     border: none;
-    color: #888;
+    color: #4f4f4f;
     font-size: 18px;
     cursor: pointer;
     padding: 5px;
