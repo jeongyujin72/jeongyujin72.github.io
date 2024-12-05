@@ -13,6 +13,33 @@ document.addEventListener("DOMContentLoaded", function () {
         completeButton.addEventListener("click", function () {
             // 중간 지점 계산 로직 호출
             console.log("완료 버튼 클릭됨!");
+
+            // 지도를 보여준다
+            mapContainer.style.display = "block";
+            map.relayout();
+
+            bounds = new daum.maps.LatLngBounds();
+
+            // 기존 마커 모두 제거
+            markers.forEach((marker) => marker.setMap(null));
+            markers = [];
+
+            // 새로운 마커 생성
+            coordinates.forEach((coord) => {
+            var coords = new daum.maps.LatLng(coord.y, coord.x);
+            var newMarker = new daum.maps.Marker({
+                position: coords,
+                map: map
+            });
+
+            // 지도 위의 모든 마커가 보이도록 줌아웃
+            markers.push(newMarker);
+            bounds.extend(coords);
+            });
+
+            if (coordinates.length > 0) {
+            map.setBounds(bounds);
+            }
                
             // 완료 버튼 두번째로 눌리는 경우 기존 원 삭제
             if(circle){
