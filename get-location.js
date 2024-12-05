@@ -23,8 +23,8 @@ function sample5_execDaumPostcode() {
                         coordinates.push({ x: parseFloat(result.x), y: parseFloat(result.y) });
                         console.log("좌표가 추가되었습니다:", coordinates);
 
-                        // 마커를 추가하려면 최대 10개까지만 추가
-                        if (markers.length < 10) {
+                        // 마커를 추가하려면 최대 20개까지만 추가
+                        if (markers.length < 20) {
                             // 새 마커를 생성하고 지도에 표시
                             var newMarker = new daum.maps.Marker({
                                 position: coords,
@@ -49,7 +49,7 @@ function sample5_execDaumPostcode() {
                             map.setBounds(bounds);
           
                         } else {
-                            alert("최대 10개의 마커만 표시할 수 있습니다.");
+                            alert("최대 20개의 마커만 표시할 수 있습니다.");
                         }
                     }
                 });
