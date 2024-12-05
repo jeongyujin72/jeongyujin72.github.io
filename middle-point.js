@@ -77,7 +77,7 @@ function calculateMeanCoordinates() {
 
         coordinates.forEach(coord => {
             sumX += coord.x;
-            sumY += coord.y;
+            sumY += coord.y; 
         });
 
         var mean = {
@@ -152,4 +152,3 @@ function displayMarker(place) {
         infowindow.open(map, marker);
     });
 }
-
