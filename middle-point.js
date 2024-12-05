@@ -46,12 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 // 마커가 없으면 반경을 증가시키고 다시 검색
-                if (markerCount === 0) {
+                if (markerCount < 2) {
                 circle.setMap(null);
                 console.log("기존 원 삭제되었습니다.");
 
                 radius += 1000; // 반경 1000m씩 증가
-                console.log("마커가 없어 반경을 증가합니다. 새로운 반경:", radius);
+                console.log("마커가 적어 반경을 증가합니다. 새로운 반경:", radius);
 
                 // 원 생성
                 addCircle(radius);
@@ -85,7 +85,7 @@ function calculateMeanCoordinates() {
             x: sumX / coordinates.length,
             y: sumY / coordinates.length
         };
-        console.log("계산된 평균 좌표:", mean);
+        console.log("계산된 평균 좌표:", mean); 
       return mean;
     }
 
