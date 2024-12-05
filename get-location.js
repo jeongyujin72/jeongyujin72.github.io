@@ -20,7 +20,8 @@ function sample5_execDaumPostcode() {
             wrapper.appendChild(newInput);
 
             var deleteButton = document.createElement("button");
-            deleteButton.textContent = "삭제";
+            deleteButton.className = "delete-button";
+            deleteButton.innerHTML = "&#10006;"; // 'x' 모양 아이콘
             deleteButton.onclick = function () {
               // 삭제 버튼 클릭 시 입력 필드와 좌표 제거
               var index = coordinates.findIndex(
